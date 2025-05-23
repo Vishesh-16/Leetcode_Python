@@ -1,10 +1,23 @@
 from collections import Counter
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        # Cnt = Counter(nums)
-        # for val in Cnt.values():
-        #     if val >= 2:
-        #         return True
-        # return False
+         Cnt = Counter(nums)
+         for val in Cnt.values():
+             if val >= 2:
+                 return True
+         return False
 
+********************************************
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:         
         return len(nums) != len(set(nums))
+********************************************
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+            s = set()
+                for i in nums:
+                    if i not in s:
+                        s.add(i)
+                    else:
+                        return True
+            return False
