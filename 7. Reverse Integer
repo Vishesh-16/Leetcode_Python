@@ -1,0 +1,21 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        n = x
+        INT_MIN, INT_MAX = -2**31, 2**31 - 1
+        sign = -1 if n < 0 else 1
+        n = abs(n)
+        reversed_num = 0
+
+        while n != 0:
+            digit = n % 10
+            reversed_num = reversed_num * 10 + digit
+            n //= 10
+
+        res = sign * reversed_num
+        
+        if res < INT_MIN or res > INT_MAX:
+            return 0
+        else:
+            return res
+
+        
