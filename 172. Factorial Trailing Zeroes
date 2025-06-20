@@ -1,0 +1,76 @@
+-----------------------------------
+Brute-Force by Computing n! and Counting Zeros
+-----------------------------------
+n = int(input())
+fact = 1
+
+for i in range(1,n+1):
+  fact = fact * i 
+
+fact = str(fact)
+
+c = 0
+
+for x in range(len(fact)-1,-1,-1):
+  if fact[x] == '0':
+    c += 1
+  else:
+    break
+
+print(c)
+-------------------------------------
+What It Does:
+- Actually computes the full value of n!
+- Converts it to a string
+- Counts how many '0' characters are at the end (trailing zeros)
+
+❌ Issues:
+- Very slow and memory-heavy for large n (e.g., n > 10000)
+- Factorials grow huge very fast → takes time and memory
+- Not suitable for competitive programming or big n
+
+-------------------------------------
+Mathematical Approach using Count of 5s
+-------------------------------------
+n = int(input())
+c = 0
+power_of_5 = 5
+while n // power_of_5 >= 1:
+    c += n // power_of_5
+    power_of_5 *= 5
+
+print(c)
+
+-------------------------------------
+
+What It Does:   Doesn't compute the factorial at all
+
+Uses this key idea:
+
+- Trailing zeros in n! are caused by factors of 10, and 10 = 2 × 5
+- But 2s are always more frequent than 5s in factorials,
+- so the number of 5s in the factorization of n! determines how many trailing zeros it has.
+
+🔢 How It Works:
+
+- It counts how many multiples of 5, 25, 125, etc. are less than or equal to n.
+- Adds all of them to get the total number of 5s that go into the factorial
+- Much faster and handles large n (up to 10⁹) easily
+
+-------------------------------------------------
+SUMMARY
+-------------------------------------------------
+
+| Feature                      | Code 1                            | Code 2                         |
+| ---------------------------- | --------------------------------- | ------------------------------ |
+| Computes full `n!`?          | ✅ Yes                             | ❌ No                           |
+| Fast for large `n`?          | ❌ No (slow for n > 5000)          | ✅ Yes (fast even for n = 10⁶+) |
+| Memory efficient?            | ❌ No                              | ✅ Yes                          |
+| Preferred in interviews/CP?  | ❌ No                              | ✅ Yes                          |
+| Easy to understand visually? | ✅ Yes (you see the actual number) | ✅ Yes (with explanation)       |
+
+
+
+
+
+
