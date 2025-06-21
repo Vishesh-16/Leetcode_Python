@@ -1,0 +1,54 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        num =[]
+        if len(nums) <= 2:
+            return max(nums)
+        else:
+            for i in range(len(nums)):
+                if nums[i] not in num:
+                    num.append(nums[i])
+            if len(num) <=2 :
+                return(max(num))
+            else:
+                num.remove(max(num))
+                num.remove(max(num))
+                return max(num)
+
+----------------------------------------------------------
+----------------------------------------------------------
+
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        unique_nums = list(set(nums))
+        
+        if len(unique_nums) < 3:
+            return max(unique_nums)
+        
+        unique_nums.remove(max(unique_nums))
+        unique_nums.remove(max(unique_nums))
+        return max(unique_nums)
+
+----------------------------------------------------------
+----------------------------------------------------------
+
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        first = second = third = float('-inf')
+        
+        for num in nums:
+            if num in (first, second, third):
+                continue  # skip duplicates
+            
+            if num > first:
+                first, second, third = num, first, second
+            elif num > second:
+                second, third = num, second
+            elif num > third:
+                third = num
+        
+        return third if third != float('-inf') else first
+----------------------------------------------------------
+----------------------------------------------------------
+           
+
+        
