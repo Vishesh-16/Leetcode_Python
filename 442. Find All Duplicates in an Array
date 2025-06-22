@@ -1,0 +1,63 @@
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        res = []
+        for i in nums:
+            if nums.count(i) > 1:
+                if i not in res:
+                    res.append(i)
+        return res
+------------------------------------------------------------------------------------
+O (n square) not recommended
+------------------------------------------------------------------------------------
+
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        res = []
+        for i in range(len(nums)):
+            index = abs(nums[i]) - 1
+            if nums[index] < 0:
+                res.append(abs(nums[i]))
+            else:
+                nums[index] = -nums[index]
+        return res
+-----------------------------------------------------------------------------------
+In-place cyclic-sort pass • Time O(n) • Extra space O(1)
+-----------------------------------------------------------------------------------
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]
+        i, n = 0, len(nums)
+        res = []
+
+        while i < n:
+            correct_idx = nums[i] - 1
+            # If the current value isn't in its correct slot *and*
+            # the target slot does not already contain the same value,
+            # swap it into place.
+            if nums[i] != nums[correct_idx]:
+                nums[i], nums[correct_idx] = nums[correct_idx], nums[i]
+            else:
+                i += 1
+
+        # Anything not in its “index + 1” place is a duplicate.
+        for idx, val in enumerate(nums):
+            if val != idx + 1:
+                res.append(val)
+
+        return res
+
+------------------------------------------------------------------------------------------
+Hash-set sweep • Time O(n) • Extra space O(n)
+------------------------------------------------------------------------------------------
+
+from typing import List
+
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+    seen, dupes = set(), []
+    for x in nums:
+        if x in seen:
+            dupes.append(x)
+        else:
+            seen.add(x)
+    return dupes
+
