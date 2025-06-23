@@ -1,0 +1,27 @@
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+         lst = []
+         i = 1
+         while len(lst) < k:
+             if i not in arr:
+                 lst.append(i)
+             i += 1
+         return lst[k - 1]
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        
+        i = 0  # pointer for arr
+        current = 1  # current number we're checking
+        missing_count = 0
+        
+        while True:
+            if i < len(arr) and arr[i] == current:
+                i += 1
+            else:
+                missing_count += 1
+                if missing_count == k:
+                    return current
+            current += 1
